@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.reptile.mapper.HospitalMapper" >
+
+  <sql id="Base_Column_List" >
+    hospitalUrl, hospitalName, telephoneNo, hospitalFax, hospitalAddr, hospitalPost,hospitalLocation,hospitalLeaderName,buildTime,hospitalType,hospitalLevel,isMedicalInsurance
+  </sql>
+
+  <insert id="insert" parameterType="list" >
+    insert into hospital (
+        <include refid="Base_Column_List"/>
+      )
+    values
+    <foreach collection="list" item="hos"  separator="," >
+      ( #{hos.hospitalUrl,jdbcType=VARCHAR}, #{hos.hospitalName,jdbcType=VARCHAR},
+      #{hos.telephoneNo,jdbcType=VARCHAR}, #{hos.hospitalFax,jdbcType=VARCHAR}, #{hos.hospitalAddr,jdbcType=VARCHAR},
+      #{hos.hospitalPost,jdbcType=VARCHAR},#{hos.hospitalLocation,jdbcType=VARCHAR},#{hos.hospitalLeaderName,jdbcType=VARCHAR},
+      #{hos.buildTime,jdbcType=VARCHAR},#{hos.hospitalType,jdbcType=VARCHAR},#{hos.hospitalLevel,jdbcType=CHAR},
+      #{hos.isMedicalInsurance,jdbcType=CHAR}
+      )
+    </foreach>
+
+
+  </insert>
+
+</mapper>
