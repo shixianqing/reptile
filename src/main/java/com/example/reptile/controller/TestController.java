@@ -1,5 +1,6 @@
 package com.example.reptile.controller;
 
+import com.example.reptile.processor.SpiderMedicalBusinessInfo;
 import com.example.reptile.processor.SpiderMedicalBusinessSite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +14,12 @@ public class TestController {
 
     @Autowired
     SpiderMedicalBusinessSite spiderMedicalBusinessSite;
+    @Autowired
+    SpiderMedicalBusinessInfo spiderMedicalBusinessInfo;
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public void test() throws Exception{
-        spiderMedicalBusinessSite.process();
+        spiderMedicalBusinessInfo.spider();
     }
 
 }
