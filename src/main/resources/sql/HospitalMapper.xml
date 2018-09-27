@@ -19,7 +19,31 @@
       #{hos.isMedicalInsurance,jdbcType=CHAR}
       )
     </foreach>
+  </insert>
 
+  <insert id="add" parameterType="com.example.reptile.model.Hospital" >
+    insert into hospital (
+    <include refid="Base_Column_List"/>
+    )
+    values
+      ( #{hospitalUrl,jdbcType=VARCHAR}, #{hospitalName,jdbcType=VARCHAR},
+      #{telephoneNo,jdbcType=VARCHAR}, #{hospitalFax,jdbcType=VARCHAR}, #{hospitalAddr,jdbcType=VARCHAR},
+      #{hospitalPost,jdbcType=VARCHAR},#{hospitalLocation,jdbcType=VARCHAR},#{hospitalLeaderName,jdbcType=VARCHAR},
+      #{buildTime,jdbcType=VARCHAR},#{hospitalType,jdbcType=VARCHAR},#{hospitalLevel,jdbcType=CHAR},
+      #{isMedicalInsurance,jdbcType=CHAR}
+      )
+  </insert>
+
+  <insert id="insert" parameterType="java.util.List" >
+    insert into hospital (
+    <include refid="Base_Column_List"/>
+    )
+    values
+    <foreach collection="list" item="hos"  separator="," >
+      ( #{hName,jdbcType=VARCHAR},#{hType,jdbcType=VARCHAR},#{hGrade,jdbcType=CHAR},
+      #{provinceId,jdbcType=CHAR}
+      )
+    </foreach>
 
   </insert>
 
