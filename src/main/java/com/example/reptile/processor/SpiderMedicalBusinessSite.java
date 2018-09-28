@@ -2,28 +2,13 @@ package com.example.reptile.processor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.reptile.mapper.HospitalMapper;
-import com.example.reptile.model.Hospital;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
-import org.jsoup.helper.HttpConnection;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
-import org.jsoup.nodes.TextNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.util.StringUtil;
-import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.selector.Html;
-
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * @Author:shixianqing
