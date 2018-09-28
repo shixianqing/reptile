@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.reptile.mapper.MedicineMapper" >
+
+  <sql id="Base_Column_List" >
+    medicineName, medicineNameCommon, productEnterprise, medicineStandard, convertRatio, packagingMaterial,unit,medicineForm,selfPaymentRatio,childRatio,bearRatio,injuryRatio,prescriptionFlag,
+    cancleFlag,medicineClassify,payRange
+  </sql>
+
+  <insert id="insert" parameterType="list" >
+    insert into medicine_spider (
+        <include refid="Base_Column_List"/>
+      )
+    values
+    <foreach collection="list" item="hos"  separator="," >
+      ( #{hos.medicineName,jdbcType=VARCHAR}, #{hos.medicineNameCommon,jdbcType=VARCHAR},
+      #{hos.productEnterprise,jdbcType=VARCHAR}, #{hos.medicineStandard,jdbcType=VARCHAR}, #{hos.convertRatio,jdbcType=INTEGER},
+      #{hos.packagingMaterial,jdbcType=VARCHAR},#{hos.unit,jdbcType=VARCHAR},#{hos.medicineForm,jdbcType=VARCHAR},
+      #{hos.selfPaymentRatio,jdbcType=VARCHAR},#{hos.childRatio,jdbcType=VARCHAR},#{hos.bearRatio,jdbcType=VARCHAR},
+      #{hos.injuryRatio,jdbcType=VARCHAR},#{hos.prescriptionFlag,jdbcType=VARCHAR},#{hos.cancleFlag,jdbcType=CHAR},#{hos.medicineClassify,jdbcType=CHAR},
+      #{hos.payRange,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+
+
+</mapper>

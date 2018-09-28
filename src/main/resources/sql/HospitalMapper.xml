@@ -6,7 +6,7 @@
     hospitalUrl, hospitalName, telephoneNo, hospitalFax, hospitalAddr, hospitalPost,hospitalLocation,hospitalLeaderName,buildTime,hospitalType,hospitalLevel,isMedicalInsurance
   </sql>
 
-  <insert id="insert" parameterType="list" >
+<!--  <insert id="insert" parameterType="list" >
     insert into hospital (
         <include refid="Base_Column_List"/>
       )
@@ -19,7 +19,7 @@
       #{hos.isMedicalInsurance,jdbcType=CHAR}
       )
     </foreach>
-  </insert>
+  </insert>-->
 
   <insert id="add" parameterType="com.example.reptile.model.Hospital" >
     insert into hospital (
