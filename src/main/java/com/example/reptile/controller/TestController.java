@@ -1,6 +1,6 @@
 package com.example.reptile.controller;
 
-import com.example.reptile.processor.SpiderMedicalBusinessInfo;
+import com.example.reptile.processor.SpiderHospitalBusinessInfo;
 import com.example.reptile.processor.SpiderMedicalBusinessSite;
 import com.example.reptile.processor.medicine.MedicineSpider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,17 @@ public class TestController {
     @Autowired
     SpiderMedicalBusinessSite spiderMedicalBusinessSite;
     @Autowired
-    SpiderMedicalBusinessInfo spiderMedicalBusinessInfo;
+    SpiderHospitalBusinessInfo spiderHospitalBusinessInfo;
     @Autowired
     MedicineSpider medicineSpider;
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public void test() throws Exception{
-        spiderMedicalBusinessInfo.spider();
+        spiderHospitalBusinessInfo.spider();
+    }
+    @RequestMapping(value = "/pai",method = RequestMethod.GET)
+    public void pai() throws Exception{
+        spiderMedicalBusinessSite.process();
     }
 
     @RequestMapping(value = "/medicine",method = RequestMethod.GET)

@@ -45,28 +45,5 @@ public class HttpUtil {
         return body;
     }
 
-    public static HttpPost getReq(String url, Map<String,String> params) throws ParseException, IOException{
 
-        //创建post方式请求对象
-        HttpPost httpPost = new HttpPost(url);
-
-        //设置参数到请求对象中
-        List<NameValuePair> paramList = new ArrayList<>();
-        if(params!=null){
-            for (Map.Entry<String,String> entry : params.entrySet()) {
-                paramList.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
-            }
-        }
-        httpPost.setEntity(new UrlEncodedFormEntity(paramList));
-
-        LOGGER.debug("请求地址：{}",url);
-        LOGGER.debug("请求参数：{}",params.toString());
-
-        //设置header信息
-        //指定报文头【Content-type】、【User-Agent】
-        httpPost.setHeader("Content-type", "application/x-www-form-urlencoded");
-        httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36");
-
-        return httpPost;
-    }
 }

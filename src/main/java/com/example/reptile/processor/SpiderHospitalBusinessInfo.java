@@ -26,14 +26,14 @@ import java.util.List;
  * @Description:
  **/
 @Service
-public class SpiderMedicalBusinessInfo implements PageProcessor {
+public class SpiderHospitalBusinessInfo implements PageProcessor {
     private Site site = Site.me().setCycleRetryTimes(3).setTimeOut(120000).setSleepTime((int)(Math.random()*1000 + 4000)).setUserAgent( (int)(Math.random()*2 ) == 1 ? "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134");
     private static final String LIST_PAGE_URL_REGEX = "http://yy.ylsw.net/list/province-([0-9]\\d*)_p-([0-9]\\d*)_yy.html";
     private static final String PRIVINCE_COMMON_URL = "http://yy.ylsw.net/list/province-{0}_p-{1}_yy.html";
     private static final String PRIVINCE_LIST_URL = "http://yy.ylsw.net/list/province-{0}_yy.html";
     private static final String PRIVINCE_LIST_URL_REGEX = "http://yy.ylsw.net/list/province-([0-9]\\d*)_yy.html";
     private static final String START_URL_REGEX = "http://yy\\.ylsw\\.net/list/yy.html";
-    private static final Logger LOGGER = LoggerFactory.getLogger(SpiderMedicalBusinessInfo.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpiderHospitalBusinessInfo.class);
     private static final int PAGE_SIZE = 15;
     @Autowired
     private PipelineHospital pipelineHospital;
@@ -93,7 +93,7 @@ public class SpiderMedicalBusinessInfo implements PageProcessor {
     }
 
     public void spider(){
-        Spider.create(new SpiderMedicalBusinessInfo())
+        Spider.create(new SpiderHospitalBusinessInfo())
                 .addUrl("http://yy.ylsw.net/list/yy.html")
                 //开启5个线程抓取
                 .thread(5)
@@ -103,7 +103,7 @@ public class SpiderMedicalBusinessInfo implements PageProcessor {
     }
 
     public static void main(String[] args) {
-        Spider.create(new SpiderMedicalBusinessInfo())
+        Spider.create(new SpiderHospitalBusinessInfo())
                 .addUrl("http://yy.ylsw.net/list/yy.html")
                 //开启5个线程抓取
                 .thread(5)

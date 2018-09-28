@@ -45,7 +45,8 @@ public class SpiderMedicalBusinessSite {
 
         for (String province:provinces){
             String reqUrl = MessageFormat.format(url,province,new Date().getTime());
-            Connection connection = Jsoup.connect(reqUrl);
+            System.out.println(reqUrl);
+            Connection connection = Jsoup.connect(reqUrl).timeout(120000).userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36");
             Connection.Response response = null;
             try {
                 response = connection.execute();

@@ -2,7 +2,7 @@ package com.example.reptile.model;
 
 /**
  * @Author:shixianqing
- * @Date:2018/9/2118:09
+ * @Date:2018/9/21 18:09
  * @Description:
  **/
 public class Hospital {

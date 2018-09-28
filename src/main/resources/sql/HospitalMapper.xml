@@ -6,20 +6,20 @@
     hospitalUrl, hospitalName, telephoneNo, hospitalFax, hospitalAddr, hospitalPost,hospitalLocation,hospitalLeaderName,buildTime,hospitalType,hospitalLevel,isMedicalInsurance
   </sql>
 
-<!--  <insert id="insert" parameterType="list" >
-    insert into hospital (
-        <include refid="Base_Column_List"/>
-      )
-    values
-    <foreach collection="list" item="hos"  separator="," >
-      ( #{hos.hospitalUrl,jdbcType=VARCHAR}, #{hos.hospitalName,jdbcType=VARCHAR},
-      #{hos.telephoneNo,jdbcType=VARCHAR}, #{hos.hospitalFax,jdbcType=VARCHAR}, #{hos.hospitalAddr,jdbcType=VARCHAR},
-      #{hos.hospitalPost,jdbcType=VARCHAR},#{hos.hospitalLocation,jdbcType=VARCHAR},#{hos.hospitalLeaderName,jdbcType=VARCHAR},
-      #{hos.buildTime,jdbcType=VARCHAR},#{hos.hospitalType,jdbcType=VARCHAR},#{hos.hospitalLevel,jdbcType=CHAR},
-      #{hos.isMedicalInsurance,jdbcType=CHAR}
-      )
-    </foreach>
-  </insert>-->
+  <!--<insert id="insert" parameterType="list" >-->
+    <!--insert into hospital (-->
+        <!--<include refid="Base_Column_List"/>-->
+      <!--)-->
+    <!--values-->
+    <!--<foreach collection="list" item="hos"  separator="," >-->
+      <!--( #{hos.hospitalUrl,jdbcType=VARCHAR}, #{hos.hospitalName,jdbcType=VARCHAR},-->
+      <!--#{hos.telephoneNo,jdbcType=VARCHAR}, #{hos.hospitalFax,jdbcType=VARCHAR}, #{hos.hospitalAddr,jdbcType=VARCHAR},-->
+      <!--#{hos.hospitalPost,jdbcType=VARCHAR},#{hos.hospitalLocation,jdbcType=VARCHAR},#{hos.hospitalLeaderName,jdbcType=VARCHAR},-->
+      <!--#{hos.buildTime,jdbcType=VARCHAR},#{hos.hospitalType,jdbcType=VARCHAR},#{hos.hospitalLevel,jdbcType=CHAR},-->
+      <!--#{hos.isMedicalInsurance,jdbcType=CHAR}-->
+      <!--)-->
+    <!--</foreach>-->
+  <!--</insert>-->
 
   <insert id="add" parameterType="com.example.reptile.model.Hospital" >
     insert into hospital (
@@ -35,13 +35,13 @@
   </insert>
 
   <insert id="insert" parameterType="java.util.List" >
-    insert into hospital (
-    <include refid="Base_Column_List"/>
+    insert into hospital_bak (
+      hospitalName,hospitalType,hospitalLevel,provinceId
     )
     values
     <foreach collection="list" item="hos"  separator="," >
-      ( #{hName,jdbcType=VARCHAR},#{hType,jdbcType=VARCHAR},#{hGrade,jdbcType=CHAR},
-      #{provinceId,jdbcType=CHAR}
+      ( #{hos.hName,jdbcType=VARCHAR},#{hos.hType,jdbcType=VARCHAR},#{hos.hGrade,jdbcType=CHAR},
+      #{hos.provinceId,jdbcType=CHAR}
       )
     </foreach>
 

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.reptile.mapper.MedicineMapper;
 import com.example.reptile.model.Medicine;
 import com.example.reptile.web.HttpUtil;
+import com.example.reptile.web.Request;
 import org.apache.http.client.methods.HttpPost;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -42,7 +43,7 @@ public class MedicineSpider implements Process {
         params.put("sfzf","1");//是否作废 0-是  1-否
         params.put("pageIndex","1");
         params.put("pageCount","20");
-        String result = HttpUtil.send(HttpUtil.getReq(url,params));
+        String result = HttpUtil.send(new Request(url,params).getHttpPost());
         logger.debug("结果集：{}",result);
 
         long totalPages = 0;
@@ -61,7 +62,7 @@ public class MedicineSpider implements Process {
         for (int i=1;i<=totalPages;i++){
             params.put("pageIndex",String.valueOf(i));
             params.put("pageCount","20");
-            Spider.blockingQueue.put(HttpUtil.getReq(url,params));
+            Spider.blockingQueue.put(new Request(url,params));
         }
 
         Spider.getInstance(this).run();
