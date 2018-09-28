@@ -1,8 +1,9 @@
 package com.example.reptile.processor.medicine;
 
-import java.util.Map;
+import org.apache.http.client.methods.HttpPost;
+
 
 public interface Process {
 
-    void parseHtml(Map map);
+    void parseHtml(HttpPost httpPost) throws Exception;
 }

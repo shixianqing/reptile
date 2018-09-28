@@ -1,5 +1,6 @@
 package com.example.reptile.processor.medicine;
 
+import org.apache.http.client.methods.HttpPost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Spider implements Runnable {
 
     private Process process;
-    public static final BlockingQueue<Map> blockingQueue = new LinkedBlockingQueue<>();
+    public static final BlockingQueue<HttpPost> blockingQueue = new LinkedBlockingQueue<>();
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private ExecutorService  executor = Executors.newCachedThreadPool();
     public static Spider getInstance(Process process){
@@ -34,13 +35,16 @@ public class Spider implements Runnable {
 
                 @Override
                 public void run() {
-                    Map map = blockingQueue.poll();
-                    if (map == null){
+                    HttpPost httpPost = blockingQueue.poll();
+                    if (httpPost == null){
                         executor.shutdown();
                         return;
                     }
-
-                   process.parseHtml(map);
+                    try {
+                        process.parseHtml(httpPost);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }

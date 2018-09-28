@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.reptile.mapper.MedicineMapper;
 import com.example.reptile.model.Medicine;
 import com.example.reptile.web.HttpUtil;
+import org.apache.http.client.methods.HttpPost;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -41,7 +42,7 @@ public class MedicineSpider implements Process {
         params.put("sfzf","1");//是否作废 0-是  1-否
         params.put("pageIndex","1");
         params.put("pageCount","20");
-        String result = HttpUtil.send(url,params);
+        String result = HttpUtil.send(HttpUtil.getReq(url,params));
         logger.debug("结果集：{}",result);
 
         long totalPages = 0;
@@ -60,19 +61,20 @@ public class MedicineSpider implements Process {
         for (int i=1;i<=totalPages;i++){
             params.put("pageIndex",String.valueOf(i));
             params.put("pageCount","20");
-            String response = HttpUtil.send(url,params);
-            logger.debug("响应结果：{}",response);
-            if (!ObjectUtils.isEmpty(response)){
-                map = JSONObject.parseObject(response,Map.class);
-                Spider.blockingQueue.add(map);
-            }
+            Spider.blockingQueue.put(HttpUtil.getReq(url,params));
         }
 
         Spider.getInstance(this).run();
 
     }
 
-    public void parseHtml(Map map) {
+    public void parseHtml(HttpPost httpPost) throws Exception{
+        String response = HttpUtil.send(httpPost);
+        logger.debug("响应结果：{}",response);
+        if (ObjectUtils.isEmpty(response)){
+           return;
+        }
+        Map map = JSONObject.parseObject(response,Map.class);
         Object html = map.get("pagelistajax");
         if (html == null)
             return;
