@@ -6,6 +6,7 @@ import com.example.reptile.model.Medicine;
 import com.example.reptile.web.HttpUtil;
 import com.example.reptile.web.Request;
 import org.apache.http.client.methods.HttpPost;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +45,7 @@ public class MedicineSpider implements Process {
         params.put("sfzf","1");//是否作废 0-是  1-否
         params.put("pageIndex","1");
         params.put("pageCount","20");
-        String result = HttpUtil.send(new Request(url,params).getHttpPost());
+        String result = new Request(url,params).getConnection().execute().body();
         logger.debug("结果集：{}",result);
 
         long totalPages = 0;
@@ -62,15 +64,16 @@ public class MedicineSpider implements Process {
         for (int i=1;i<=totalPages;i++){
             params.put("pageIndex",String.valueOf(i));
             params.put("pageCount","20");
-            Spider.blockingQueue.put(new Request(url,params));
+            parseHtml(new Request(url,params).getConnection());
+//            Spider.blockingQueue.put(new Request(url,params));
         }
 
-        Spider.getInstance(this).run();
+//        Spider.getInstance(this).run();
 
     }
 
-    public void parseHtml(HttpPost httpPost) throws Exception{
-        String response = HttpUtil.send(httpPost);
+    public void parseHtml(Connection connection) throws Exception{
+        String response = connection.execute().body();
         logger.debug("响应结果：{}",response);
         if (ObjectUtils.isEmpty(response)){
            return;
@@ -111,6 +114,7 @@ public class MedicineSpider implements Process {
         //入数据库
         medicineMapper.insert(medicines);
     }
+
 
 
     public static void main(String[] args) throws Exception{

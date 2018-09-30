@@ -1,9 +1,9 @@
 package com.example.reptile.processor.medicine;
 
-import org.apache.http.client.methods.HttpPost;
+import org.jsoup.Connection;
 
 
 public interface Process {
 
-    void parseHtml(HttpPost httpPost) throws Exception;
+    void parseHtml(Connection connection) throws Exception;
 }

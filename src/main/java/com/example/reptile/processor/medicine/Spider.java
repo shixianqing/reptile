@@ -2,6 +2,7 @@ package com.example.reptile.processor.medicine;
 
 import com.example.reptile.web.Request;
 import org.apache.http.client.methods.HttpPost;
+import org.jsoup.Connection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,9 +32,8 @@ public class Spider implements Runnable {
     }
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()){
+        while (!executor.isShutdown()){
             executor.execute(new Runnable() {
-
                 @Override
                 public void run() {
                     Request request = blockingQueue.poll();
@@ -41,9 +41,9 @@ public class Spider implements Runnable {
                         executor.shutdown();
                         return;
                     }
-                    HttpPost httpPost = blockingQueue.poll().getHttpPost();
+                   Connection connection = blockingQueue.poll().getConnection();
                     try {
-                        process.parseHtml(httpPost);
+                        process.parseHtml(connection);
                     } catch (Exception e) {
                         int cycleTime = request.getCycleTime();
                         if (cycleTime>0){
