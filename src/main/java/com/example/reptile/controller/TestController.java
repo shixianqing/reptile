@@ -3,6 +3,7 @@ package com.example.reptile.controller;
 import com.example.reptile.processor.SpiderHospitalBusinessInfo;
 import com.example.reptile.processor.SpiderMedicalBusinessSite;
 import com.example.reptile.processor.chongqing.TreamentSite;
+import com.example.reptile.processor.disease.DiseaseSite;
 import com.example.reptile.processor.medicine.MedicineSpider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ public class TestController {
     TreamentSite treamentSite;
     @Autowired
     MedicineSpider medicineSpider;
+    @Autowired
+    DiseaseSite diseaseSite;
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public void test() throws Exception{
@@ -39,6 +42,10 @@ public class TestController {
     @RequestMapping(value = "/chongqingTreament",method = RequestMethod.GET)
     public void chongqingTreament() throws Exception{
         treamentSite.process();
+    }
+    @RequestMapping(value = "/disease",method = RequestMethod.GET)
+    public void disease() throws Exception{
+        diseaseSite.run();
     }
 
 }
