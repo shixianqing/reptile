@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @Author:shixianqing
  * @Date:2018/10/1016:17
- * @Description:
+ * @Description: 疾病百科
  **/
 public class JIBinBaiKeSite implements PageProcessor {
     private static final String START_URL = "http://jbk.39.net/bw_t1/";
