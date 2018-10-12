@@ -1,5 +1,7 @@
 package com.example.reptile.model;
 
+import java.math.BigDecimal;
+
 /**
  * @Author:shixianqing
  * @Date:2018/10/1117:40
@@ -10,10 +12,10 @@ public class HaiNanTreament {
     private String hospitalLevel;//医院等级
     private String treamentName;//诊疗项目名称
     private String unit;//单位
-    private double standardPrice;//标准价格
-    private double selfPayRatio;//自付比例
+    private BigDecimal standardPrice;//标准价格
+    private BigDecimal selfPayRatio;//自付比例
 
-    public HaiNanTreament(String treamentNo, String hospitalLevel, String treamentName, String unit, double standardPrice, double selfPayRatio) {
+    public HaiNanTreament(String treamentNo, String hospitalLevel, String treamentName, String unit, BigDecimal standardPrice, BigDecimal selfPayRatio) {
         this.treamentNo = treamentNo;
         this.hospitalLevel = hospitalLevel;
         this.treamentName = treamentName;
@@ -57,19 +59,19 @@ public class HaiNanTreament {
         this.unit = unit;
     }
 
-    public double getStandardPrice() {
+    public BigDecimal getStandardPrice() {
         return standardPrice;
     }
 
-    public void setStandardPrice(double standardPrice) {
+    public void setStandardPrice(BigDecimal standardPrice) {
         this.standardPrice = standardPrice;
     }
 
-    public double getSelfPayRatio() {
+    public BigDecimal getSelfPayRatio() {
         return selfPayRatio;
     }
 
-    public void setSelfPayRatio(double selfPayRatio) {
+    public void setSelfPayRatio(BigDecimal selfPayRatio) {
         this.selfPayRatio = selfPayRatio;
     }
 

@@ -34,17 +34,17 @@ public class HaiNanTreamentPipeline implements Pipeline {
         Elements elements = document.select("body>div>div.mattle>div.you>dd>table>tbody>tr");
 
         List<HaiNanTreament> haiNanTreaments = new ArrayList<>();
-        for (Element element:elements){
-            Elements childs = element.children();
-            String treamentNo = childs.get(0).text();
-            String hospitalLevel = childs.get(1).text();
-            String treamentName = childs.get(2).text();
-            String unit = childs.get(5).text();
-            double standardPrice = Double.valueOf(childs.get(6).text());
-            double selfPayRatio = Double.valueOf(childs.get(7).text());
-            haiNanTreaments.add(new HaiNanTreament(treamentNo,hospitalLevel,treamentName,unit,standardPrice,selfPayRatio));
-
-        }
+//        for (Element element:elements){
+//            Elements childs = element.children();
+//            String treamentNo = childs.get(0).text();
+//            String hospitalLevel = childs.get(1).text();
+//            String treamentName = childs.get(2).text();
+//            String unit = childs.get(5).text();
+//            double standardPrice = Double.valueOf(childs.get(6).text());
+//            double selfPayRatio = Double.valueOf(childs.get(7).text());
+//            haiNanTreaments.add(new HaiNanTreament(treamentNo,hospitalLevel,treamentName,unit,standardPrice,selfPayRatio));
+//
+//        }
 
         System.out.println(haiNanTreaments);
     }

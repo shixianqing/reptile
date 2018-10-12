@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.reptile.mapper.HaiNanTreamentMapper" >
+
+
+  <insert id="insert" parameterType="java.util.List" >
+    insert into haiNanTreament (
+    treamentNo,hospitalLevel,treamentName,unit,standardPrice,selfPayRatio
+    )
+    values
+    <foreach collection="list" item="hos"  separator="," >
+      ( #{hos.treamentNo,jdbcType=VARCHAR},#{hos.hospitalLevel,jdbcType=VARCHAR},#{hos.treamentName,jdbcType=VARCHAR},
+      #{hos.unit,jdbcType=VARCHAR}, #{hos.standardPrice,jdbcType=NUMERIC},#{hos.selfPayRatio,jdbcType=NUMERIC}
+      )
+    </foreach>
+
+  </insert>
+
+</mapper>
