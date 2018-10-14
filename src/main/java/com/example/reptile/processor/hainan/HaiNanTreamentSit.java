@@ -1,23 +1,15 @@
 package com.example.reptile.processor.hainan;
 
-import com.example.reptile.pipeline.HaiNanTreamentPipeline;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.downloader.selenium.SeleniumDownloader;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
-import us.codecraft.webmagic.selector.Selectable;
-import us.codecraft.webmagic.utils.HttpConstant;
 
-import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author:shixianqing
@@ -68,12 +60,11 @@ public class HaiNanTreamentSit implements PageProcessor {
 //        System.out.println("http://hi.lss.gov.cn/hnsi/sbbmfwybzlxm/index99.html".matches(regex));
 
 
-//        System.setProperty("selenuim_config", "E:\\project\\reptile\\src\\main\\resources\\config.ini");
+        System.setProperty("selenuim_config", "E:\\project\\reptile\\src\\main\\resources\\config.ini");
         Spider.create(new HaiNanTreamentSit())//调用一个webmagic中封装好的一个网页爬取类
-                .addRequest(new Request(START_URL).setMethod(HttpConstant.Method.POST))//要爬取的网页
-//                .addUrl(START_URL)//要爬取的网页
+                .addUrl(START_URL)//要爬取的网页
                 //浏览器驱动（动态网页信息通过模拟浏览器启动获取）
-//                .setDownloader(new SeleniumDownloader("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"))
+                .setDownloader(new SeleniumDownloader("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"))
                 .thread(3)//启动n个线程（此语句表示启动3个线程）
                 .run();//启动爬虫，会阻塞当前线程执行（及n个线程不是同时执行的）
 

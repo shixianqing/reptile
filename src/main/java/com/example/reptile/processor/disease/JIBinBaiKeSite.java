@@ -1,6 +1,7 @@
 package com.example.reptile.processor.disease;
 
 import com.example.reptile.mapper.ZhongYiBaoDianDiseaseMapper;
+import com.example.reptile.util.FileUtil;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -64,21 +65,7 @@ public class JIBinBaiKeSite implements PageProcessor {
                 stringBuffer.append(name).append("\t").append(str).append("\r").append("\n");
             }
         }
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter(new File("D:\\b.txt"),true);
-            fileWriter.write(stringBuffer.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if (fileWriter != null){
-                try {
-                    fileWriter.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        FileUtil.writeData(stringBuffer,"");
     }
 
     @Override
