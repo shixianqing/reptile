@@ -4,7 +4,6 @@ import com.example.reptile.processor.SpiderHospitalBusinessInfo;
 import com.example.reptile.processor.SpiderMedicalBusinessSite;
 import com.example.reptile.processor.chongqing.TreamentSite;
 import com.example.reptile.processor.disease.DiseaseSite;
-import com.example.reptile.processor.hainan.HaiNanTreamentSite;
 import com.example.reptile.processor.medicine.MedicineSpider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +26,7 @@ public class TestController {
     @Autowired
     DiseaseSite diseaseSite;
     @Autowired
-    HaiNanTreamentSite haiNanTreamentSite;
+//    HaiNanTreamentSite haiNanTreamentSite;
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public void test() throws Exception{
@@ -52,7 +51,7 @@ public class TestController {
     }
     @RequestMapping(value = "/haiNan",method = RequestMethod.GET)
     public String haiNanTreamentSit() throws Exception{
-        haiNanTreamentSite.process();
+//        haiNanTreamentSite.process();
 
         return "OK";
     }

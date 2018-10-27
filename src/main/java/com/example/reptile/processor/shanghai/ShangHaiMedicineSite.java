@@ -23,18 +23,18 @@ import java.util.concurrent.*;
 
 public class ShangHaiMedicineSite {
 
-    private static final String REQ_URL = "http://202.96.245.182/xxcx/ddyy.jsp";//定点医院
-//    private static final String REQ_URL = "http://202.96.245.182/xxcx/yp.jsp?lm=4";//药品
+//    private static final String REQ_URL = "http://202.96.245.182/xxcx/ddyy.jsp";//定点医院
+    private static final String REQ_URL = "http://202.96.245.182/xxcx/yp.jsp?lm=4";//药品
     private static final BlockingQueue<Document> queue = new LinkedBlockingQueue<>();
 
     private Object object = new Object();
 
     public void process() throws Exception {
-        for (int i=1;i<=161;i++){
+        for (int i=1;i<=157;i++){
             List<NameValuePair> list = new ArrayList<>();
-            list.add(new BasicNameValuePair("pageno",String.valueOf(i)));//医院
-//            list.add(new BasicNameValuePair("sPagenum",String.valueOf(i)));//药品
-//            list.add(new BasicNameValuePair("fl0",String.valueOf(2)));//药品
+//            list.add(new BasicNameValuePair("pageno",String.valueOf(i)));//医院
+            list.add(new BasicNameValuePair("sPagenum",String.valueOf(i)));//药品
+            list.add(new BasicNameValuePair("fl0",String.valueOf(2)));//药品
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(list,"utf-8");
             getDocument(REQ_URL,entity);
         }
@@ -126,8 +126,8 @@ public class ShangHaiMedicineSite {
                         Document document = queue.poll();
                         if (document != null ){
                             try {
-//                                parseDocument(document);
-                                parseHospitalDocument(document);
+                                parseDocument(document);
+//                                parseHospitalDocument(document);
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 executor.shutdown();

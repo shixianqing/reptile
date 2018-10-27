@@ -1,5 +1,9 @@
 package com.example.reptile.util;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,6 +25,16 @@ public class FileUtil {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public static void writeExcel(String [] titles,String fileName){
+
+        Workbook workbook = new HSSFWorkbook();
+        Sheet sheet = workbook.createSheet();
+        for (int i=0;i<titles.length;i++){
+            sheet.createRow(i);
+//            sheet.
         }
     }
 }
